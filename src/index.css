@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @format */
 
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
@@ -7,6 +8,11 @@
   transition: none !important;
 }
 
+=======
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import "tailwindcss";
+
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
 }
@@ -240,6 +246,7 @@ section {
     @apply border border-black-50 bg-black-100;
   }
 
+<<<<<<< HEAD
   .contact-canvas-wrapper {
     position: relative;
     width: 100%;
@@ -260,6 +267,8 @@ section {
     transition: opacity 0.2s ease;
   }
 
+=======
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
   .marquee-item {
     @apply md:w-40 w-32;
   }
@@ -305,6 +314,7 @@ section {
   }
 
   form {
+<<<<<<< HEAD
     position: relative;
     z-index: 50;
     contain: paint;
@@ -319,12 +329,20 @@ section {
   form {
     label {
       @apply transition-none block text-white-50 mb-2;
+=======
+    label {
+      @apply block text-white-50 mb-2;
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
     }
 
     input,
     textarea {
+<<<<<<< HEAD
       @apply transition-none w-full px-4 py-4 md:text-base text-sm text-white caret-white
  placeholder:text-blue-50 bg-blue-100 rounded-md;
+=======
+      @apply w-full px-4 py-4 md:text-base text-sm placeholder:text-blue-50 bg-blue-100 rounded-md;
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
     }
 
     a {
@@ -469,7 +487,11 @@ section {
   transition: border-color 1s ease-in-out;
 }
 
+<<<<<<< HEAD
 /* .card::before {
+=======
+.card::before {
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
   position: absolute;
   content: "";
   width: 100%;
@@ -492,6 +514,7 @@ section {
   mask-clip: padding-box, border-box;
   opacity: 0;
   transition: 0.5s ease;
+<<<<<<< HEAD
 } */
 
 .card::before {
@@ -536,6 +559,10 @@ section {
 }
 
 /* End of the css */
+=======
+}
+
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 .glow {
   pointer-events: none;
   position: absolute;

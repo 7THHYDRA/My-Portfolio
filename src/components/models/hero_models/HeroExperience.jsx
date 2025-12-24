@@ -15,11 +15,15 @@ const HeroExperience = () => {
 
   const isMobile = useMemo(() => window.innerWidth <= 768, []);
   const isTablet = useMemo(() => window.innerWidth <= 1024, []);
+<<<<<<< HEAD
   const particleCount = isMobile ? 30 : 60; // lower count to limit GPU usage
+=======
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 
   return (
     <Canvas
       camera={{ position: [0, 0, 15], fov: 45 }}
+<<<<<<< HEAD
       dpr={[1, 1.25]}
       gl={{ powerPreference: "low-power", antialias: true }}
       onCreated={(state) => {
@@ -30,6 +34,13 @@ const HeroExperience = () => {
           });
         }
       }}
+=======
+      dpr={[1, 1.5]}
+      gl={
+        ({ preserveDrawingBuffer: true },
+        { powerPreference: "high-performance" })
+      }
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
     >
       {/* deep blue ambient */}
       <ambientLight intensity={0.2} color="#1a1a40" />
@@ -45,7 +56,11 @@ const HeroExperience = () => {
 
       <Suspense fallback={null}>
         <HeroLights />
+<<<<<<< HEAD
         <Particles count={particleCount} />
+=======
+        <Particles count={100} />
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
         <group
           scale={isMobile ? 0.7 : 1}
           position={[0, -3.5, 0]}

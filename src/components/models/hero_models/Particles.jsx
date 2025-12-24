@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @format */
 
 import { useRef, useMemo } from "react";
@@ -7,6 +8,13 @@ import { useFrame } from "@react-three/fiber";
 const Particles = ({ count = 60 }) => {
   const mesh = useRef();
   const frame = useRef(0);
+=======
+import { useRef, useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+
+const Particles = ({ count = 200 }) => {
+  const mesh = useRef();
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 
   const particles = useMemo(() => {
     const temp = [];
@@ -17,13 +25,18 @@ const Particles = ({ count = 60 }) => {
           Math.random() * 10 + 5, // higher starting point
           (Math.random() - 0.5) * 10,
         ],
+<<<<<<< HEAD
         speed: 0.002 + Math.random() * 0.002,
+=======
+        speed: 0.005 + Math.random() * 0.001,
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
       });
     }
     return temp;
   }, [count]);
 
   useFrame(() => {
+<<<<<<< HEAD
     // only update every other frame to cut CPU/GPU usage in half
     frame.current = (frame.current + 1) % 2;
     if (frame.current !== 0) return;
@@ -31,6 +44,9 @@ const Particles = ({ count = 60 }) => {
     if (!mesh.current) return;
     const positions = mesh.current.geometry.attributes.position.array;
 
+=======
+    const positions = mesh.current.geometry.attributes.position.array;
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
     for (let i = 0; i < count; i++) {
       let y = positions[i * 3 + 1];
       y -= particles[i].speed;

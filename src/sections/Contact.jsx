@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @format */
 
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
@@ -8,10 +9,18 @@ import TitleHeader from "../components/TitleHeader";
 const ContactExperience = lazy(
   () => import("../components/models/contact/ContactExperience")
 );
+=======
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+import TitleHeader from "../components/TitleHeader";
+import ContactExperience from "../components/models/contact/ContactExperience";
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 
 const Contact = () => {
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   // const [form, setForm] = useState({
   //   name: "",
   //   email: "",
@@ -157,6 +166,39 @@ const Contact = () => {
 
   // const formData = new FormData(formRef.current);
   // console.log(Object.fromEntries(formData.entries()));
+=======
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Show loading state
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      );
+
+      // Reset form and stop loading
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error); // Optional: show toast
+    } finally {
+      setLoading(false); // Always stop loading, even on error
+    }
+  };
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
 
   return (
     <section id="contact" className="flex-center section-padding">
@@ -179,9 +221,15 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
+<<<<<<< HEAD
                     value={name}
                     onChange={handleNameChange}
                     placeholder="What’s your name?"
+=======
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="What’s your good name?"
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
                     required
                   />
                 </div>
@@ -192,9 +240,15 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
+<<<<<<< HEAD
                     value={email}
                     onChange={handleEmailChange}
                     placeholder="What’s your email address? 📧"
+=======
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="What’s your email address?"
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
                     required
                   />
                 </div>
@@ -204,15 +258,25 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
+<<<<<<< HEAD
                     value={message}
                     onChange={handleMessageChange}
                     placeholder="How can I help you? 😃"
+=======
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="How can I help you?"
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
                     rows="5"
                     required
                   />
                 </div>
 
+<<<<<<< HEAD
                 <button type="submit" disabled={loading} aria-busy={loading}>
+=======
+                <button type="submit">
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
                   <div className="cta-button group">
                     <div className="bg-circle" />
                     <p className="text">
@@ -226,6 +290,7 @@ const Contact = () => {
               </form>
             </div>
           </div>
+<<<<<<< HEAD
           <div className="xl:col-span-7 min-h-96" ref={threeRef}>
             <div
               className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden"
@@ -247,6 +312,11 @@ const Contact = () => {
                   3D preview will load when you scroll here.
                 </div>
               )}
+=======
+          <div className="xl:col-span-7 min-h-96">
+            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+              <ContactExperience />
+>>>>>>> 606137dec2f2a9c623743dfe122a9d935a92ac21
             </div>
           </div>
         </div>
