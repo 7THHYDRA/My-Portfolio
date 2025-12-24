@@ -1,8 +1,12 @@
+/** @format */
+
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 
-const Particles = ({ count = 200 }) => {
+// Throttle updates to reduce GPU/CPU load and avoid WebGL context loss
+const Particles = ({ count = 60 }) => {
   const mesh = useRef();
+  const frame = useRef(0);
 
   const particles = useMemo(() => {
     const temp = [];
@@ -13,14 +17,20 @@ const Particles = ({ count = 200 }) => {
           Math.random() * 10 + 5, // higher starting point
           (Math.random() - 0.5) * 10,
         ],
-        speed: 0.005 + Math.random() * 0.001,
+        speed: 0.002 + Math.random() * 0.002,
       });
     }
     return temp;
   }, [count]);
 
   useFrame(() => {
+    // only update every other frame to cut CPU/GPU usage in half
+    frame.current = (frame.current + 1) % 2;
+    if (frame.current !== 0) return;
+
+    if (!mesh.current) return;
     const positions = mesh.current.geometry.attributes.position.array;
+
     for (let i = 0; i < count; i++) {
       let y = positions[i * 3 + 1];
       y -= particles[i].speed;

@@ -15,15 +15,21 @@ const HeroExperience = () => {
 
   const isMobile = useMemo(() => window.innerWidth <= 768, []);
   const isTablet = useMemo(() => window.innerWidth <= 1024, []);
+  const particleCount = isMobile ? 30 : 60; // lower count to limit GPU usage
 
   return (
     <Canvas
       camera={{ position: [0, 0, 15], fov: 45 }}
-      dpr={[1, 1.5]}
-      gl={
-        ({ preserveDrawingBuffer: true },
-        { powerPreference: "high-performance" })
-      }
+      dpr={[1, 1.25]}
+      gl={{ powerPreference: "low-power", antialias: true }}
+      onCreated={(state) => {
+        const canvas = state.gl.domElement || state.gl.canvas;
+        if (canvas && canvas.addEventListener) {
+          canvas.addEventListener("webglcontextlost", (e) => {
+            console.warn("WebGL context lost on HeroExperience", e);
+          });
+        }
+      }}
     >
       {/* deep blue ambient */}
       <ambientLight intensity={0.2} color="#1a1a40" />
@@ -39,7 +45,7 @@ const HeroExperience = () => {
 
       <Suspense fallback={null}>
         <HeroLights />
-        <Particles count={100} />
+        <Particles count={particleCount} />
         <group
           scale={isMobile ? 0.7 : 1}
           position={[0, -3.5, 0]}

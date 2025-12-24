@@ -5,6 +5,21 @@ export function Computer(props) {
     "/models/computer-optimized-transformed.glb"
   );
 
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    props.onMeshClick?.();
+  };
+
+  const handlePointerOver = (e) => {
+    e.stopPropagation();
+    document.body.style.cursor = "pointer";
+  };
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation();
+    document.body.style.cursor = "";
+  };
+
   return (
     <group {...props} dispose={null}>
       <group position={[-4.005, 67.549, 58.539]}>
@@ -13,6 +28,9 @@ export function Computer(props) {
           receiveShadow
           geometry={nodes.Cube000_ComputerDesk_0001_1.geometry}
           material={materials["ComputerDesk.001"]}
+          onPointerDown={handlePointerDown}
+          onPointerOver={handlePointerOver}
+          onPointerOut={handlePointerOut}
         />
         <mesh
           castShadow
