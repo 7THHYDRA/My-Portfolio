@@ -1,5 +1,11 @@
+/** @format */
+
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
+
+* {
+  transition: none !important;
+}
 
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
@@ -279,13 +285,26 @@ section {
   }
 
   form {
+    position: relative;
+
+    contain: paint;
+  }
+
+  form input,
+  form textarea {
+    position: relative;
+    will-change: contents;
+  }
+
+  form {
     label {
-      @apply block text-white-50 mb-2;
+      @apply transition-none block text-white-50 mb-2;
     }
 
     input,
     textarea {
-      @apply w-full px-4 py-4 md:text-base text-sm placeholder:text-blue-50 bg-blue-100 rounded-md;
+      @apply transition-none w-full px-4 py-4 md:text-base text-sm text-white caret-white
+ placeholder:text-blue-50 bg-blue-100 rounded-md;
     }
 
     a {
@@ -430,7 +449,7 @@ section {
   transition: border-color 1s ease-in-out;
 }
 
-.card::before {
+/* .card::before {
   position: absolute;
   content: "";
   width: 100%;
@@ -453,8 +472,48 @@ section {
   mask-clip: padding-box, border-box;
   opacity: 0;
   transition: 0.5s ease;
+} */
+
+.card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: var(--gradient);
+  background-attachment: fixed;
+
+  /* Chrome / Safari */
+  -webkit-mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--start) - 15) * 1deg),
+      #ffffff1f 0deg,
+      white,
+      #ffffff00 100deg
+    );
+  -webkit-mask-composite: destination-in;
+  -webkit-mask-clip: padding-box, border-box;
+
+  /* Firefox */
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--start) - 15) * 1deg),
+      #ffffff1f 0deg,
+      white,
+      #ffffff00 100deg
+    );
+  mask-composite: intersect;
+  mask-clip: padding-box, border-box;
+
+  opacity: 0;
+  transition: 0.5s ease;
 }
 
+/* End of the css */
 .glow {
   pointer-events: none;
   position: absolute;

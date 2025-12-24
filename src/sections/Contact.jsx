@@ -1,3 +1,5 @@
+/** @format */
+
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -13,9 +15,16 @@ const Contact = () => {
     message: "",
   });
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setForm({ ...form, [name]: value });
+  // };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -62,7 +71,7 @@ const Contact = () => {
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="What’s your good name?"
+                    placeholder="What’s your name?"
                     required
                   />
                 </div>
@@ -75,7 +84,7 @@ const Contact = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="What’s your email address?"
+                    placeholder="What’s your email address? 📧"
                     required
                   />
                 </div>
@@ -87,7 +96,7 @@ const Contact = () => {
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="How can I help you?"
+                    placeholder="How can I help you? 😃"
                     rows="5"
                     required
                   />
@@ -108,7 +117,13 @@ const Contact = () => {
             </div>
           </div>
           <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+            <div
+              className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden"
+              style={{
+                contain: "strict",
+                willChange: "transform",
+              }}
+            >
               <ContactExperience />
             </div>
           </div>
